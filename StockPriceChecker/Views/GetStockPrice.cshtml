@@ -1,0 +1,8 @@
+﻿@model StockPrice
+
+<h1>@ViewBag.Title</h1>
+
+<p>The current stock price for @Model.TickerSymbol is $@Model.CurrentPrice.</p>
+
+<p>This data was last updated at @Model.Timestamp.ToString("F").</p>
+
