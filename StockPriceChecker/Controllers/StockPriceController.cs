@@ -28,6 +28,7 @@ namespace StockPriceChecker.Controllers
                     { "X-RapidAPI-Host", "realstonks.p.rapidapi.com" },
                 },
             };
+
             using (var response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
@@ -45,6 +46,8 @@ namespace StockPriceChecker.Controllers
                     // Parse the JSON response into a StockPrice object
                     var json = await response.Content.ReadAsStringAsync();
                     var stockPrice = JsonConvert.DeserializeObject<StockPrice>(json);
+
+
 
                     ViewBag.Title = ("Stock Price for " + stockPrice.TickerSymbol);
 

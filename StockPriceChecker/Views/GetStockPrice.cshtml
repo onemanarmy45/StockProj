@@ -6,3 +6,9 @@
 
 <p>This data was last updated at @Model.Timestamp.ToString("F").</p>
 
+@using (Html.BeginForm("GetStockPrice", "StockPrice", FormMethod.Get))
+{
+    <label for="tickerSymbol">Enter a stock ticker symbol:</label>
+    @Html.TextBox("tickerSymbol")
+    <input type="submit" value="Get Stock Price" />
+}
