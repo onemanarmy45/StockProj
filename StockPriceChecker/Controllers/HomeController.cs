@@ -18,6 +18,19 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult GetStockPrice(FormCollection form)
+    {
+        string tickerSymbol = form["tickerSymbol"];
+
+        //code to call api and deserialize
+
+        string apiUrl = $"https://realstonks.p.rapidapi.com/price/{tickerSymbol}";
+
+        //code to call api and deserialize
+
+        return View("StockPrice", stockPrice);
+    }
+
     public IActionResult Privacy()
     {
         return View();

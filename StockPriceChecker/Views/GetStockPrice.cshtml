@@ -12,3 +12,28 @@
     @Html.TextBox("tickerSymbol")
     <input type="submit" value="Get Stock Price" />
 }
+
+@using (Html.BeginForm("GetStockPrice", "StockPrice", FormMethod.Post))
+{
+    <label for="tickerSymbol">Enter a stock ticker symbol:</label>
+    @Html.TextBox("tickerSymbol")
+    <input type="submit" value="Get Stock Price" />
+}
+
+<h2>Stock Price Checker</h2>
+
+@using (Html.BeginForm("GetStockPrice", "StockPrice", FormMethod.Post))
+{
+    <p>
+        Enter a ticker symbol:
+        @Html.TextBoxFor(m => m.TickerSymbol)
+        <input type="submit" value="Get Stock Price" />
+    </p>
+}
+
+@if (Model != null)
+{
+    <h3>@Model.TickerSymbol</h3>
+    <p>Current Price: @Model.CurrentPrice</p>
+    <p>High: @Model.Timestamp</p>
+}

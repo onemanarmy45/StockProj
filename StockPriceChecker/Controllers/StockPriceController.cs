@@ -12,8 +12,6 @@ namespace StockPriceChecker.Controllers
 {
     public class StockPriceController : Controller
     {
-        // Add your other methods and properties here
-
         public async Task<ActionResult> GetStockPrice(string tickerSymbol)
         {
             // Make an API call to retrieve the stock price data using the RealStonks API
@@ -21,7 +19,7 @@ namespace StockPriceChecker.Controllers
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://realstonks.p.rapidapi.com/TSLA"),
+                RequestUri = new Uri("https://realstonks.p.rapidapi.com/price/{tickerSymbol}"),
                 Headers =
                 {
                     { "X-RapidAPI-Key", "c0cef5ee96msh2108c722f3fe6dap18231cjsn05d6ed2c81b7" },
@@ -36,10 +34,9 @@ namespace StockPriceChecker.Controllers
                 Console.WriteLine(body);
             }
 
-
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync("https://realstonks.p.rapidapi.com/TSLA" + tickerSymbol);
+                var response = await httpClient.GetAsync("https://realstonks.p.rapidapi.com/price/{tickerSymbol}" + tickerSymbol);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -47,10 +44,7 @@ namespace StockPriceChecker.Controllers
                     var json = await response.Content.ReadAsStringAsync();
                     var stockPrice = JsonConvert.DeserializeObject<StockPrice>(json);
 
-
-
                     ViewBag.Title = ("Stock Price for " + stockPrice.TickerSymbol);
-
 
                     // Return the StockPrice object to the view
                     return View(stockPrice);
@@ -63,6 +57,5 @@ namespace StockPriceChecker.Controllers
             }
         }
     }
-
 }
 
