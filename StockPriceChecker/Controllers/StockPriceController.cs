@@ -6,20 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StockPriceChecker.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace StockPriceChecker.Controllers
 {
     public class StockPriceController : Controller
     {
         public async Task<ActionResult> GetStockPrice(string tickerSymbol)
         {
-            // Make an API call to retrieve the stock price data using the RealStonks API
             var client = new HttpClient();
             var request = new HttpRequestMessage
+            
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://realstonks.p.rapidapi.com/price/{tickerSymbol}"),
+                RequestUri = new Uri($"https://realstonks.p.rapidapi.com/price/{tickerSymbol}"),
                 Headers =
                 {
                     { "X-RapidAPI-Key", "c0cef5ee96msh2108c722f3fe6dap18231cjsn05d6ed2c81b7" },
